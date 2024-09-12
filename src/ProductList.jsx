@@ -1,10 +1,15 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState} from 'react';
+import { useDispatch,useSelector } from 'react-redux';
+import { addItem } from './CartSlice';
 import './ProductList.css'
 import CartItem from './CartItem';
+
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
+
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -215,7 +220,7 @@ function ProductList() {
     ];
 
 // Use map() to extract specific properties
-const plantDetails = plants.map(plant => ({
+const plantDetails = plantsArray.map(plant => ({
     name: plant.name,
     image: plant.image,
     description: plant.description,
@@ -250,18 +255,22 @@ const plantDetails = plants.map(plant => ({
     setShowCart(true); // Set showCart to true when cart icon is clicked
 };
 const handlePlantsClick = (e) => {
+    alert('item added to the cart');
     e.preventDefault();
     setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
     setShowCart(false); // Hide the cart when navigating to About Us
+    
 };
 
-   const handleContinueShopping = (e) => {
+const handleContinueShopping = (e) => {
+   
     e.preventDefault();
-    setShowCart(false);
+    setShowCart(true);
   };
 
     
   const handleAddToCart = (product) => {
+    alert('item added to the cart');
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
        ...prevState,

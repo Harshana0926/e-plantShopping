@@ -1,8 +1,10 @@
 
 import React, { useState } from 'react';
 import ProductList from './ProductList';
+import { Provider } from 'react-redux';
 import './App.css';
 import AboutUs from './AboutUs';
+import store from './store';
 
 function App() {
   
